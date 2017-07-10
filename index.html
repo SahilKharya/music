@@ -21,13 +21,25 @@
             <h1>  </h1>
         </section>
     </div>
+    <script src="jquery.js"> </script>
     <script type="text/javascript">
         
-        var button = document.querySelector('.welcome-screen button');
-
-        button.addEventListener('click',function() {
-            var name = document.querySelector('#name-input').value;
-            console.log(name)
+        $('.welcome-screen button').on('click', function() {
+            var name = $('#name-input').val();
+        /* to allow limited access to the website, we use if property of providing name to enter the site
+            If the length of characters is more than 2, then allow access to site else don't allow */
+            if(name.length > 2) {
+                var message = "Welcome " + name;
+                console.log(message);
+                $('.main h1').text(message);
+                /* to find the h1 tag inside 'main' class and add the value of variable- 'message' */
+                //adding and removing 'hidden' class
+                $('.welcome-screen').addClass('hidden');
+                $('.main').removeClass('hidden');
+            }
+            else {
+                $('#name-input').addClass('error');
+            }
         });
     </script>
 </body>
