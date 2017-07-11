@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Song App</title>
+    <link rel="stylesheet" type="text/css" href="font-awesome.css">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
@@ -17,10 +18,20 @@
                 <button> Go </button>
             </div>
         </section>
-        <section class="main hidden">
-            <h1>  </h1>
-        </section>
+        <div class="main hidden">
+            <header> <div class="right floated user-name">  </div> </header>
+            <section class="content">
+                <audio src="mysong.mp3" controls=""></audio>
+            </section>
+            <footer> 
+                <div class="controls">
+                    <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+                </div>
+            </footer>
+        </div>
     </div>
+    
+    
     <script src="jquery.js"> </script>
     <script type="text/javascript">
         
@@ -31,7 +42,7 @@
             if(name.length > 2) {
                 var message = "Welcome " + name;
                 console.log(message);
-                $('.main h1').text(message);
+                $('.main .user-name').text(message);
                 /* to find the h1 tag inside 'main' class and add the value of variable- 'message' */
                 //adding and removing 'hidden' class
                 $('.welcome-screen').addClass('hidden');
@@ -41,6 +52,7 @@
                 $('#name-input').addClass('error');
             }
         });
+        
     </script>
 </body>
 </html>
