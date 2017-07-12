@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <title> Song App</title>
     <link rel="stylesheet" type="text/css" href="font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div class="wrapper">
-        <section class="welcome-screen">
+        <section class="welcome-screen hidden">
             <h1> Welcome to Songify </h1>
             <h3> Enter name to access your account </h3>
             <div class="input-wrapper">
@@ -18,20 +18,44 @@
                 <button> Go </button>
             </div>
         </section>
-        <div class="main hidden">
-            <header> <div class="right floated user-name">  </div> </header>
+        <div class="main">
+            <header> 
+                <div class="right floated user-name">  </div> 
+            </header>
             <section class="content">
-                <audio src="mysong.mp3" controls=""></audio>
+                <audio src="mysong.mp3"></audio>
+                <div class="list-headers">
+                    <div> Title </div> 
+                    <div> Artist </div>
+                    <div> Album </div>
+                    <div> Duration </div>
+                </div>
+                <div class="song-list">
+                    <div class="song">
+                        <span class="song-name"></span>
+                        <span class="song-artist"></span>
+                        <span class="song-album"></span>
+                        <span class="song-length"></span>
+                    </div>
+                </div>
             </section>
             <footer> 
                 <div class="controls">
-                    <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+                    <div class="player-buttons">
+                        <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="progress-wrapper">
+                        <span class="time-elapsed"> </span>
+                        <div class="player-progress">
+                            <div class="progress-filled"> </div>
+                        </div>
+                        <span class="song-duration"></span>
+                    </div>
                 </div>
             </footer>
         </div>
     </div>
-    
-    
+     
     <script src="jquery.js"> </script>
     <script type="text/javascript">
         
@@ -41,9 +65,8 @@
             If the length of characters is more than 2, then allow access to site else don't allow */
             if(name.length > 2) {
                 var message = "Welcome " + name;
-                console.log(message);
                 $('.main .user-name').text(message);
-                /* to find the h1 tag inside 'main' class and add the value of variable- 'message' */
+                /* to find the class 'user-name' inside the 'main' class and add the value of variable- 'message' */
                 //adding and removing 'hidden' class
                 $('.welcome-screen').addClass('hidden');
                 $('.main').removeClass('hidden');
@@ -52,6 +75,73 @@
                 $('#name-input').addClass('error');
             }
         });
+        /*defined a function 'togglesong' to be executed to play/pause song*/
+        function toggleSong() {
+            var song = document.querySelector('audio');
+            if(song.paused == true) {
+                console.log('Playing');
+                $('.play-icon').removeClass('fa-play').addClass('fa-pause');
+                // playing song
+                song.play();
+            }
+            else {
+                console.log('Pausing');
+                $('.play-icon').removeClass('fa-pause').addClass('fa-play');
+                // pausing song
+                song.pause();
+            }
+        } 
+        
+        /* selected the play icon and added click function to select the audio*/
+        $('.play-icon').on('click',function() {
+            // func. togglesong used to play/pause song.
+            toggleSong();
+        }); 
+        
+        $('body').on('keypress',function(event) {
+            // keycode = 32 for spacebar, used so that it works only for spacebar
+            if (event.keyCode == 32) {
+                toggleSong();
+            }
+        }); 
+        
+        var songName = 'I Want it that Way';
+        
+        function fancyTimeFormat(time) {   
+            // Hours, minutes and seconds
+            var hrs = ~~(time / 3600);
+            var mins = ~~((time % 3600) / 60);
+            var secs = time % 60;
+
+            // Output like "1:01" or "4:03:59" or "123:03:59"
+            var ret = "";
+
+            if (hrs > 0) {
+                ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+            }
+
+            ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+            ret += "" + secs;
+            return ret;
+        }
+        
+        function updateCurrentTime() {
+            var song = document.querySelector('audio');
+            var currentTime = Math.floor(song.currentTime);
+            currentTime = fancyTimeFormat(currentTime);
+            var duration = Math.floor(song.duration);
+            duration = fancyTimeFormat(duration)
+            $('.time-elapsed').text(currentTime);
+            $('.song-duration').text(duration);
+        }
+        
+        window.onload = function() {
+            $('.song-name').text(songName);
+            updateCurrentTime();
+            setInterval(function() {
+                updateCurrentTime();
+            },1000);
+        }   
         
     </script>
 </body>
