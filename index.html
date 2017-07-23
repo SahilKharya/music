@@ -6,33 +6,48 @@
     <title> Song App</title>
     <link rel="stylesheet" type="text/css" href="font-awesome.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lemonada" rel="stylesheet">
 </head>
 
 <body>
-    <div class="wrapper">
-        <section class="welcome-screen hidden">
+    <div class="wrapper">   
+        <section class="welcome-screen">
             <h1> Welcome to Songify </h1>
             <h3> Enter name to access your account </h3>
+            <br>
             <div class="input-wrapper">
                 <input type="text" placeholder="Name" id="name-input">
                 <button> Go </button>
             </div>
         </section>
-        <div class="main">
+        <div class="main hidden">
             <header> 
+                <h1 class="title">Songify</h1>
                 <div class="right floated user-name">  </div> 
             </header>
-            <section class="content">
+            <button type="button" class="btn btn-info" id="link"><a href="drum.html"><h5>Virtual Drummer</h5></a> </button>
+            <section class="row content">
+                <div class="col-xs-2" id="playlist">
+                    <h3 style="text-align: center; color: #AA00FF">Playlist</h3><hr>
+                    <ul>
+                        <li>All Songs</li>
+                        <li>English</li>
+                        <li>Hindi</li>
+                    </ul>
+                </div>
                 <audio></audio>
-                
+                <div class="col-xs-10">
                 <!-- data table starts -->
                 <table id="songs">
                     <thead class="list-headers">
-                        <tr><td> Title </td>
-                            <td> Artist </td>
-                            <td> Album </td>
-                            <td> Duration </td>
+                        <tr><td style="color: #F50057"> Title </td>
+                            <td style="color: #F50057"> Artist </td>
+                            <td style="color: #F50057"> Album </td>
+                            <td style="color: #F50057"> Duration </td>
                         </tr>
                     </thead>
                         <!-- <div class="song-list"> -->
@@ -61,29 +76,58 @@
                             <td class="song-album"></td>
                             <td class="song-length"></td>
                         </tr>
+                        <tr class="song" id="song5">
+                            <td class="song-name"></td>
+                            <td class="song-artist"></td>
+                            <td class="song-album"></td>
+                            <td class="song-length"></td>
+                        </tr>
+                        <tr class="song" id="song6">
+                            <td class="song-name"></td>
+                            <td class="song-artist"></td>
+                            <td class="song-album"></td>
+                            <td class="song-length"></td>
+                        </tr>
+                        <tr class="song" id="song7">
+                            <td class="song-name"></td>
+                            <td class="song-artist"></td>
+                            <td class="song-album"></td>
+                            <td class="song-length"></td>
+                        </tr>
+                        
                         <!-- </div> -->
                     </tbody>
                 </table>
                                 <!-- data table ends -->
+                </div>
+            </section><section class="content">      
                 
                 <div class="current-song-wrapper">
                     <img class="current-song-image">
                     <div>
-                    <p class="current-song-name"></p>
+                    <p class="current-song-name" style="color: #F50057"></p>
                     <p class="current-song-album"></p>
                     </div>
                 </div>
+                
             </section>
+            
+            
+            
             <footer> 
                 <div class="controls">
                     <div class="player-buttons">
+                        <i class="fa fa-random clickable disabled" aria-hidden="true"></i>
+                        <i class="fa fa-step-backward clickable" aria-hidden="true"></i>
                         <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+                        <i class="fa fa-step-forward clickable" aria-hidden="true"></i>
+                        <i class="fa fa-repeat disabled clickable" aria-hidden="true"></i>
+                        <i class="fa fa-volume-up clickable volume" aria-hidden="true"></i>
+                        <input id="volumeslider" type="range" min="0" max="100" value="100" step="1">
                     </div>
                     <div class="progress-wrapper">
                         <span class="time-elapsed"> </span>
-                        <div class="player-progress">
-                            <div class="progress-filled"> </div>
-                        </div>
+                                <input id="seekslider" type="range" min="0" max="100" value="0" step="1">
                         <span class="song-duration"></span>
                     </div>
                 </div>

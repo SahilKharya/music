@@ -21,7 +21,10 @@ h1 {
 .wrapper {
     height: 100%;
     width: 100%;
-    background-color: #BBB;
+    background-image: url(http://wallpaperbackgrounds.com/Content/wallpapers/music/headphones/74833-37310.jpg) ;
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 .welcome-screen {
@@ -31,6 +34,18 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.title {
+    font-family: 'Lemonada', cursive;
+    text-align: center;
+    color: #9C27B0;
+}
+
+#playlist {
+    border: 1px solid black;
+    padding-bottom: 160px;
+    text-align: center;
 }
 
 .main {
@@ -66,7 +81,17 @@ h1 {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    margin: auto;
 }
+
+.player-buttons .fa {
+    margin-right: 2rem;
+}
+
+.fa.disabled {
+    color: gray;
+}
+
 
 .hidden {
     display: none;
@@ -109,6 +134,14 @@ h1 {
     border-radius: 4px;
     width: 0;
 }
+
+#seekslider{
+	width:700px;
+}
+#volumeslider {
+    width: 100px;
+}
+
 
 .list-headers {
     padding-bottom: 0.5rem;
@@ -192,12 +225,14 @@ table.dataTable tbody tr {
     display: none;
 }
 
-#songs_filter {
-    color: transparent;
-}
 #songs_filter input {
     width: 400px;
     margin-bottom: 1rem;
     font-size: 16px;
 }
         
+
+#link {
+    margin: 0 auto;
+    margin-left: 100px;
+}
